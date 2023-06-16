@@ -7,6 +7,7 @@
     "strict": true,
     "stripInternal": true,
     "target": "ES2016",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "module": "CommonJS"
   }
 }

@@ -5,4 +5,5 @@ module.exports = {
   reporters: process.env.CI
     ? [['github-actions', { silent: false }], 'summary']
     : ['default'],
+  projects: ['<rootDir>/typescript-fastify-graphql-http'],
 }
