@@ -24,7 +24,22 @@ const meQuery = `
   }
 `
 
-const queries = [{ rand: 1, query: meQuery }]
+const todosQuery = `
+  query {
+    todos {
+      title
+      description
+      watchers {
+        name
+      }
+    }
+  }
+`
+
+const queries = [
+  { rand: 0.3, query: todosQuery },
+  { rand: 1, query: meQuery },
+]
 
 export default function () {
   const rand = Math.random()
