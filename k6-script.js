@@ -1,7 +1,7 @@
 import http from 'k6/http'
 
 export const options = {
-  vus: 200,
+  vus: 150,
   duration: '30s',
   ext: {
     loadimpact: {
@@ -43,7 +43,7 @@ const queries = [
 
 export default function () {
   const rand = Math.random()
-  const { query } = queries.find((q) => q.rand <= rand)
+  const query = queries.find((q) => rand <= q.rand).query
 
   http.post('http://194.233.171.14:4000/graphql', JSON.stringify({ query }), {
     'Content-Type': 'application/json',
