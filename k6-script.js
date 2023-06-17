@@ -1,5 +1,21 @@
 import http from 'k6/http'
 
+export const options = {
+  vus: 200,
+  duration: '30s',
+  ext: {
+    loadimpact: {
+      // Project: Default project
+      projectID: 3646240,
+      // Test runs with the same name groups test runs together
+      name: 'Rust GraphQL query me',
+      distribution: {
+        main: { loadZone: 'amazon:de:frankfurt', percent: 100 },
+      },
+    },
+  },
+}
+
 const meQuery = `
   query {
     me {
@@ -8,10 +24,13 @@ const meQuery = `
   }
 `
 
+const queries = [{ rand: 1, query: meQuery }]
+
 export default function () {
-  http.post(
-    'http://localhost:4000/graphql',
-    JSON.stringify({ query: meQuery }),
-    { 'Content-Type': 'application/json' },
-  )
+  const rand = Math.random()
+  const { query } = queries.find((q) => q.rand <= rand)
+
+  http.post('http://194.233.171.14:4000/graphql', JSON.stringify({ query }), {
+    'Content-Type': 'application/json',
+  })
 }

@@ -14,7 +14,7 @@ async fn index(schema: web::Data<TodosSchema>, req: GraphQLRequest) -> GraphQLRe
 async fn index_graphiql() -> Result<HttpResponse> {
     Ok(HttpResponse::Ok()
         .content_type("text/html; charset=utf-8")
-        .body(GraphiQLSource::build().endpoint("/").finish()))
+        .body(GraphiQLSource::build().endpoint("/graphql").finish()))
 }
 
 #[actix_web::main]

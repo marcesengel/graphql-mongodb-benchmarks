@@ -49,5 +49,5 @@ const schema = new GraphQLSchema({
 const fastify = Fastify()
 fastify.all('/graphql', createHandler({ schema }))
 
-fastify.listen({ port: 4000 })
+fastify.listen({ port: 4000, host: '0.0.0.0' })
 console.log('Listening to port 4000')
