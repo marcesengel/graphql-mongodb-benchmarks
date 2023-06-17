@@ -27,7 +27,7 @@ async fn main() -> std::io::Result<()> {
             .service(web::resource("/graphql").guard(guard::Post()).to(index))
         // .service(web::resource("/graphql").guard(guard::Get()).to(index_graphiql))
     })
-    .bind("127.0.0.1:4000")?
+    .bind("0.0.0.0:4000")?
     .run()
     .await
 }
